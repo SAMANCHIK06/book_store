@@ -2,348 +2,497 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELITEBOOKS | Rasmiy do'kon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ELITEBOOKS | Mukammal Kitob Do'koni</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
-        :root {
-            --glass: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.15);
-            --accent: #00d2ff;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            margin: 0; padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #fff;
-            min-height: 100vh;
-            background: linear-gradient(-45deg, #0a0a0a, #1a1a2e, #16213e, #0f0f0f);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 20%, #0a0f1e, #03060c);
+            color: #eef5ff;
             overflow-x: hidden;
         }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
         .glass {
-            background: var(--glass);
-            backdrop-filter: blur(25px);
-            border: 1px solid var(--glass-border);
+            background: rgba(15, 25, 45, 0.55);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            border-radius: 28px;
+        }
+        .glass-card {
+            background: rgba(20, 30, 55, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 210, 255, 0.25);
             border-radius: 24px;
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
-
-        .form-control {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border: 1px solid var(--glass-border) !important;
-            color: white !important;
-            border-radius: 12px;
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: #00d2ff;
+            box-shadow: 0 20px 35px -10px rgba(0,210,255,0.3);
+            background: rgba(30, 45, 75, 0.75);
         }
-
-        /* Placeholder muammosini tuzatish */
-        .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.5) !important;
+        .btn-glow {
+            background: linear-gradient(95deg, #00c6ff, #0072ff);
+            border: none;
+            font-weight: 600;
+            border-radius: 40px;
+            padding: 12px 28px;
+            transition: 0.2s;
+            color: white;
         }
-        ::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.5) !important; }
-
-        #authWrapper {
-            position: fixed; inset: 0; z-index: 9999;
-            background: rgba(0,0,0,0.9);
-            display: flex; align-items: center; justify-content: center;
-            backdrop-filter: blur(20px);
+        .btn-glow:hover { transform: scale(1.02); box-shadow: 0 0 12px #00c6ff; }
+        .book-img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 20px;
+            transition: 0.4s;
         }
-
-        .book-card {
-            padding: 15px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer;
+        .book-card:hover .book-img { transform: scale(1.02); }
+        .price-badge {
+            background: rgba(0,210,255,0.2);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #00f2ff;
         }
-        .book-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.12); border-color: var(--accent); }
-        .book-img { width: 100%; height: 320px; object-fit: cover; border-radius: 18px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-
-        .nav-custom { background: rgba(0,0,0,0.4); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); }
-        .modal-content { background: #111 !important; color: white; border: 1px solid var(--accent); border-radius: 25px; }
-
-        footer { border-top: 1px solid var(--glass-border); padding: 50px 0; margin-top: 100px; background: rgba(0,0,0,0.3); }
-        .social-link { font-size: 24px; color: white; margin: 0 15px; transition: 0.3s; display: inline-block; }
-        .social-link:hover { color: var(--accent); transform: translateY(-5px); }
+        .navbar-custom {
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(0,210,255,0.3);
+        }
+        .cart-badge {
+            position: absolute;
+            top: -10px;
+            right: -14px;
+            background: #ff4d6d;
+            border-radius: 50px;
+            font-size: 11px;
+            padding: 3px 8px;
+            font-weight: bold;
+        }
+        .modal-dark .modal-content {
+            background: rgba(10, 20, 35, 0.98) !important;
+            backdrop-filter: blur(30px);
+            border: 1px solid #00d2ff;
+            border-radius: 32px;
+        }
+        .form-control-transparent {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(0,210,255,0.5);
+            color: white;
+            border-radius: 20px;
+            padding: 12px 18px;
+            width: 100%;
+        }
+        .form-control-transparent:focus {
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 0 8px #00d2ff;
+            border-color: #00d2ff;
+            outline: none;
+        }
+        footer a {
+            color: #bbd4ff;
+            transition: 0.2s;
+        }
+        footer a:hover { color: #00d2ff; transform: translateY(-2px); display: inline-block; }
+        .stock-green { color: #00e396; }
+        .stock-orange { color: #ffb347; }
+        .cursor-pointer { cursor: pointer; }
+        .reg-input-group { margin-bottom: 16px; }
     </style>
 </head>
 <body>
 
-    <div id="authWrapper">
-        <div class="glass p-4 p-md-5 shadow-lg text-center" style="width: 90%; max-width: 450px;">
-            <div id="loginForm">
-                <h2 class="fw-800 mb-4 text-info">KIRISH</h2>
-                <input type="tel" id="loginTel" class="form-control mb-3" placeholder="Telefon raqam">
-                <input type="password" id="loginPass" class="form-control mb-4" placeholder="Parol">
-                <button class="btn btn-info w-100 fw-bold mb-3 py-2" onclick="handleLogin()">KIRISH</button>
-                <p class="small">Hisobingiz yo'qmi? <a href="javascript:void(0)" class="text-info fw-bold" onclick="toggleAuth('reg')">Ro'yxatdan o'ting</a></p>
-            </div>
-
-            <div id="regForm" class="d-none text-start">
-                <h3 class="text-center fw-800 mb-4 text-info">RO'YXATDAN O'TISH</h3>
-                <div class="row g-2">
-                    <div class="col-6"><input type="text" id="rIsm" class="form-control" placeholder="Ism"></div>
-                    <div class="col-6"><input type="text" id="rFam" class="form-control" placeholder="Familiya"></div>
-                    <div class="col-12"><input type="tel" id="rTel" class="form-control" placeholder="Telefon"></div>
-                    <div class="col-12"><input type="text" id="rManzil" class="form-control" placeholder="Manzil"></div>
-                    <div class="col-12"><input type="password" id="rPass" class="form-control" placeholder="Parol yarating"></div>
-                </div>
-                <button class="btn btn-info w-100 fw-bold mt-4 mb-3 py-2" onclick="handleRegister()">TASDIQLASH</button>
-                <p class="text-center small">Profilingiz bormi? <a href="javascript:void(0)" class="text-info fw-bold" onclick="toggleAuth('login')">Kirish</a></p>
-            </div>
+<!-- LOGIN / REGISTER OVERLAY -->
+<div id="authOverlay" style="position:fixed; inset:0; background:rgba(0,0,0,0.95); backdrop-filter:blur(20px); z-index:1050; display:flex; align-items:center; justify-content:center;">
+    <div class="glass p-4 p-md-5" style="width:92%; max-width:480px;">
+        <div id="loginPanel">
+            <div class="text-center mb-4"><i class="bi bi-incognito fs-1 text-info"></i><h2 class="fw-bold mt-2">ELITEBOOKS</h2><p class="opacity-75">Hisobingizga kiring</p></div>
+            <input type="tel" id="loginPhone" class="form-control-transparent w-100 mb-3" placeholder="Telefon raqam +998...">
+            <input type="password" id="loginPassword" class="form-control-transparent w-100 mb-4" placeholder="Parol">
+            <button class="btn-glow w-100 py-2" onclick="loginUser()">KIRISH <i class="bi bi-arrow-right"></i></button>
+            <div class="text-center mt-4"><span class="opacity-75">Hisob yo'qmi? </span><a href="#" onclick="toggleAuthPanel('reg')" class="text-info fw-bold">Ro'yxatdan o'tish</a></div>
+        </div>
+        <div id="regPanel" style="display:none;">
+            <div class="text-center mb-3"><i class="bi bi-person-plus fs-1 text-info"></i><h3 class="fw-bold">Yangi profil</h3></div>
+            <div class="reg-input-group"><input type="text" id="regName" class="form-control-transparent" placeholder="Ism"></div>
+            <div class="reg-input-group"><input type="text" id="regSurname" class="form-control-transparent" placeholder="Familiya"></div>
+            <div class="reg-input-group"><input type="tel" id="regPhone" class="form-control-transparent" placeholder="Telefon raqam"></div>
+            <div class="reg-input-group"><input type="text" id="regAddress" class="form-control-transparent" placeholder="Manzil (ixtiyoriy)"></div>
+            <div class="reg-input-group"><input type="password" id="regPassword" class="form-control-transparent" placeholder="Parol (min 4 belgi)"></div>
+            <button class="btn-glow w-100 mt-2 py-2" onclick="registerUser()">RO'YXATDAN O'TISH</button>
+            <div class="text-center mt-3"><a href="#" onclick="toggleAuthPanel('login')" class="text-info">Kirish sahifasiga qaytish</a></div>
         </div>
     </div>
+</div>
 
-    <nav class="navbar navbar-expand-lg sticky-top nav-custom">
-        <div class="container">
-            <a class="navbar-brand fw-800 text-white" href="#" onclick="showPage('home')">ELITE<span class="text-info">BOOKS</span></a>
-            <div class="ms-auto d-flex align-items-center">
-                <a href="javascript:void(0)" class="nav-link text-white me-4" onclick="showPage('home')">Asosiy</a>
-                <a href="javascript:void(0)" class="nav-link text-white me-4" onclick="showPage('profile')"><i class="bi bi-person-circle fs-5"></i></a>
-                <a href="javascript:void(0)" class="nav-link text-white position-relative" onclick="openCart()">
-                    <i class="bi bi-cart3 fs-5 text-info"></i>
-                    <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-                </a>
+<!-- MAIN APP -->
+<div id="mainApp" style="display:none;">
+
+<nav class="navbar navbar-expand-lg navbar-custom sticky-top px-3">
+    <div class="container">
+        <a class="navbar-brand fw-800 text-white fs-2" href="#" onclick="showHome()">ELITE<span class="text-info">BOOKS</span></a>
+        <div class="ms-auto d-flex gap-3 align-items-center">
+            <span class="nav-link text-white cursor-pointer" onclick="showHome()"><i class="bi bi-house-door"></i> <span id="navHomeText">Asosiy</span></span>
+            <span class="nav-link text-white cursor-pointer" onclick="showProfile()"><i class="bi bi-person-circle"></i> <span id="navProfileText">Profil</span></span>
+            <div class="position-relative cursor-pointer" onclick="openCart()">
+                <i class="bi bi-cart4 fs-4 text-info"></i>
+                <span id="cartGlobalCount" class="cart-badge">0</span>
+            </div>
+            <select id="langSelectGlobal" class="form-select form-select-sm bg-dark text-white border-info w-auto" onchange="changeLanguage(this.value)">
+                <option value="uz">UZ</option>
+                <option value="ru">RU</option>
+            </select>
+        </div>
+    </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="homePage">
+    <div class="container py-4">
+        <div class="text-center my-4" data-aos="fade-down">
+            <h1 id="globalTitle" class="display-3 fw-bold">Elite Kutubxonasi</h1>
+            <p id="globalSubtitle" class="text-info fs-5">Eng sara kitoblar – tez yetkazib berish</p>
+            <div class="mx-auto mt-4" style="max-width:500px">
+                <input type="text" id="searchField" class="form-control-transparent w-100" placeholder="Qidirish..." onkeyup="filterBooks()">
             </div>
         </div>
-    </nav>
+        <div class="row g-4" id="booksContainer"></div>
+    </div>
+</div>
 
-    <main class="container mt-5" id="homePage">
-        <div class="text-center mb-5" data-aos="zoom-in">
-            <h1 class="display-3 fw-800 mb-0">Elite Kutubxonasi</h1>
-            <p class="text-info opacity-75">Qidiruv orqali kerakli kitobni toping</p>
-            <div class="mx-auto mt-4" style="max-width: 550px;">
-                <input type="text" id="search" class="form-control ps-4 rounded-pill py-2" placeholder="Kitob yoki muallifni yozing..." onkeyup="searchBooks()">
-            </div>
-        </div>
-        <div class="row g-4" id="booksDisplay"></div>
-    </main>
-
-    <section id="profilePage" class="container mt-5 d-none">
+<!-- PROFILE PAGE -->
+<div id="profilePage" style="display:none;">
+    <div class="container py-5">
         <div class="row g-4">
             <div class="col-lg-4">
-                <div class="glass p-4 h-100 shadow">
-                    <h4 class="fw-800 mb-4 border-bottom pb-2 text-info">Profilim</h4>
-                    <div id="userCard"></div>
-                    <button class="btn btn-outline-danger w-100 mt-4 rounded-pill" onclick="logout()">Chiqish</button>
+                <div class="glass-card p-4 text-center">
+                    <i class="bi bi-person-circle fs-1 text-info"></i>
+                    <h3 id="userFullName" class="mt-2 fw-bold">Ism Familiya</h3>
+                    <p id="userPhoneDisplay" class="text-info">+998...</p>
+                    <p id="userAddressDisplay" class="small opacity-75"></p>
+                    <hr class="bg-secondary">
+                    <button class="btn btn-outline-danger w-100 rounded-pill" onclick="logoutUser()"><i class="bi bi-box-arrow-right"></i> Chiqish</button>
                 </div>
             </div>
             <div class="col-lg-8">
-                <div class="glass p-4 h-100 shadow">
-                    <h4 class="fw-800 mb-4 border-bottom pb-2 text-info">Buyurtmalarim</h4>
-                    <div id="orderHistory"></div>
+                <div class="glass-card p-4">
+                    <h4 class="fw-bold mb-3"><i class="bi bi-clock-history text-info"></i> <span id="orderHistoryTitle">Buyurtmalarim</span></h4>
+                    <div id="ordersList" class="mt-3" style="max-height:500px; overflow-y:auto;"></div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <div class="modal fade" id="bookModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" id="modalData"></div>
         </div>
     </div>
+</div>
 
-    <footer>
-        <div class="container text-center">
-            <h4 class="fw-800 mb-4">Aloqa uchun</h4>
-            <div class="mb-4">
-                <a href="https://t.me/samandar_rakhimjonov" target="_blank" class="social-link"><i class="bi bi-telegram"></i></a>
-                <a href="https://www.instagram.com/samandar_rakhimjonov/" target="_blank" class="social-link"><i class="bi bi-instagram"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61581097813147" target="_blank" class="social-link"><i class="bi bi-facebook"></i></a>
-            </div>
-            <p class="small opacity-50 mb-0">&copy; 2026 EliteBooks | Samandar Raximjonov</p>
+<!-- BOOK MODAL -->
+<div class="modal fade modal-dark" id="bookDetailModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content" id="bookModalBody"></div>
+    </div>
+</div>
+
+<footer class="mt-5 pt-4 pb-3 text-center opacity-75 border-top border-secondary">
+    <div class="container">
+        <div class="d-flex justify-content-center gap-4 mb-3">
+            <a href="https://t.me/samandar_rakhimjonov" target="_blank"><i class="bi bi-telegram fs-3"></i></a>
+            <a href="https://www.instagram.com/samandar_rakhimjonov/" target="_blank"><i class="bi bi-instagram fs-3"></i></a>
         </div>
-    </footer>
+        <p>© 2026 ELITEBOOKS — Zamonaviy kitob do'koni</p>
+    </div>
+</footer>
+</div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        AOS.init();
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    AOS.init({ duration: 700, once: true });
 
-        const ALL_BOOKS = [
-            { id: 1, title: "Ali va Fotima", author: "Ahmad Lutfiy Qozonchi", price: 45000, img: "ali.jpeg", desc: "Islomiy muhabbat qissasi." },
-            { id: 2, title: "Alkimyogar", author: "Paulo Coelho", price: 38000, img: "Alkimyogar.jpeg", desc: "Sayohat va orzular haqida." },
-            { id: 3, title: "Atomic Habits", author: "James Clear", price: 55000, img: "atom.jpg", desc: "Kichik odatlar kuchli natija." },
-            { id: 4, title: "Muvaffaqiyat kaliti", author: "Deyl Karnegi", price: 42000, img: "deyl.jpg", desc: "Muloqot san'ati darsligi." },
-            { id: 5, title: "Fotima Roziyallohu Anhu", author: "Siyrat", price: 35000, img: "fotima.jpg", desc: "Hazrati Fotima hayoti." },
-            { id: 6, title: "Baxtiyor Oila", author: "Shayx Muhammad Sodiq", price: 95000, img: "oila.png", desc: "Oila mustahkamligi asoslari." },
-            { id: 7, title: "Pul Psixologiyasi", author: "Morgan Xauzel", price: 48000, img: "pul.jpg", desc: "Mablag' boshqarish san'ati." },
-            { id: 8, title: "Qora Pul Imperiyasi", author: "Jorj Armstrong", price: 52000, img: "qora.jpeg", desc: "Global moliya o'yinlari." },
-            { id: 9, title: "Boy Ota Kambag'al Ota", author: "Robert Kiyosaki", price: 45000, img: "rich.jpg", desc: "Moliyaviy erkinlik yo'li." },
-            { id: 10, title: "Sariq Devni Minib", author: "Xudoyberdi To'xtaboyev", price: 32000, img: "sariq.jpg", desc: "O'zbek bolalar adabiyoti durdonasi." }
-        ];
+    // ========== 15 TA KITOB ==========
+    const BOOKS_DB = [
+        { id:1, title:"Xolid ibn Valid", author:"Iskandar Ahmad", price:55000, img:"xolid.jpg", artikul:"ELT001", stock:28, desc:"Xolid ibn Valid – islom tarixidagi buyuk sarkardalardan biri. U hech qachon jangda mag‘lub bo‘lmagan noyob qo‘mondon. Ushbu kitobda uning jasorati, strategiyasi va diniy sadoqati hikoya qilinadi." },
+        { id:2, title:"Xatolar saboqlari", author:"Nil Donald Uolsh", price:42000, img:"xato.jpeg", artikul:"ELT002", stock:35, desc:"Xatolar insonning eng yaxshi ustozidir. Kitobda hayotiy muvaffaqiyatsizliklardan qanday saboq chiqarish ko‘rsatilgan. Har bir xato sizni kuchliroq qilishiga ishonch hosil qilasiz." },
+        { id:3, title:"Temur tuzuklari", author:"Amir Temur", price:89000, img:"temur.jpg", artikul:"ELT003", stock:15, desc:"Buyuk sarkarda Amir Temurning davlat boshqaruvi va harbiy taktika haqidagi asari. Ushbu kitob orqali siz haqiqiy yetakchilik sirlarini o‘rganasiz. Tarixni sevuvchilar uchun bebaho manba." },
+        { id:4, title:"Sariq dev", author:"Xudoyberdi To'xtaboyev", price:35000, img:"sariq.jpg", artikul:"ELT004", stock:95, desc:"Mashhur o‘zbek yozuvchisining bolalar va kattalar uchun yozilgan hazil-mutoyiba asari. Asarda bolalarning qiziqarli sarguzashtlari va ibratli voqealar tasvirlangan. Bu kitob avlodlar davomida sevib o‘qilgan." },
+        { id:5, title:"Boy Ota Kambag'al Ota", author:"Robert Kiyosaki", price:48000, img:"rich.jpg", artikul:"ELT005", stock:42, desc:"Moliyaviy erkinlikka erishishning asosiy tamoyillari. Kiyosaki o‘zining ikki otasining hayotiy tajribalari orqali pul haqida fikrlashni o‘rgatadi. Kitob sizning moliyaviy kelajagingizni tubdan o‘zgartirishi mumkin." },
+        { id:6, title:"Qora marvarid", author:"Jon Steynbek", price:47000, img:"qora.jpeg", artikul:"ELT006", stock:22, desc:"Oddiy baliqchining hayotini butunlay o‘zgartirgan topilma haqida chuqur falsafiy asar. Inson ochko‘zligi va orzularning narxi haqida hikoya qiladi. Nobel mukofoti sovrindori qalamiga mansub durdona." },
+        { id:7, title:"Pul psixologiyasi", author:"Morgan Housel", price:68000, img:"pul.jpg", artikul:"ELT007", stock:31, desc:"Pul haqida to‘g‘ri qaror qabul qilishning psixologik jihatlari. Qisqa va tushunarli hikoyalar orqali boylik va farovonlik sirlari ochiladi. Eng ko‘p sotilgan moliyaviy kitoblardan biri." },
+        { id:8, title:"Oila baxti", author:"Deyl Karnegi", price:52000, img:"oila.png", artikul:"ELT008", stock:47, desc:"Oilaviy munosabatlarni mustahkamlashning samarali usullari. Ushbu kitob turmush o‘rtog‘ingiz va farzandlaringiz bilan muloqotni yaxshilaydi. Baxtli oila qurishni istagan har bir kishi o‘qishi kerak." },
+        { id:9, title:"Fotima az-Zahro", author:"Muhammad Baqir", price:53000, img:"fotima.jpg", artikul:"ELT009", stock:38, desc:"Payg‘ambar (s.a.v) qizlarining eng sevimlisi Fotima az-Zahroning hayoti va fazilatlari. Uning ilm-u zakovati, sabr-toqati va diniy yuksak darajasi bayon etilgan. Ma’naviyatni oshiruvchi ajoyib kitob." },
+        { id:10, title:"Muvaffaqiyat kaliti", author:"Deyl Karnegi", price:42000, img:"deyl.jpg", artikul:"ELT010", stock:63, desc:"Muloqot va ta'sir o‘tkazishning eng kuchli usullari. Karnegining mashhur asari orqali odamlar bilan ishlash san’atini o‘zlashtirasiz. Ish va shaxsiy hayotingizda katta o‘zgarishlarga sabab bo‘ladi." },
+        { id:11, title:"Atom odatlar", author:"James Clear", price:55000, img:"atom.jpg", artikul:"ELT011", stock:52, desc:"Kichik o‘zgarishlar qanday qilib katta natijalarga olib kelishini ilmiy asosda tushuntirilgan. Kundalik odatlaringizni bir foizga yaxshilash orqali hayotingizni butunlay o‘zgartirishingiz mumkin. Dunyoning eng ko‘p sotilgan shaxsiy rivojlanish kitobi." },
+        { id:12, title:"Alkimyogar", author:"Paulo Coelho", price:38000, img:"Alkimyogar.jpeg", artikul:"ELT012", stock:87, desc:"Orzularingizga ergashish va o‘z taqdiringni yaratish haqida falsafiy roman. Ko‘plab tillarga tarjima qilingan bu asar millionlab o‘quvchilarni ilhomlantirgan. Har bir sahifada hayotiy hikmatlar yashirin." },
+        { id:13, title:"Ali va Fotima", author:"Ahmad Lutfiy Qozonchi", price:45000, img:"ali.jpeg", artikul:"ELT013", stock:64, desc:"Hazrati Ali va Fotima az-Zahroning pokiza muhabbati va oilaviy hayoti. Islom tarixidagi eng ulug‘ shaxslarning bir-biriga bo‘lgan hurmati va sadoqati tasvirlangan. O‘qigan har bir inson qalbidan joy oladigan asar." },
+        { id:14, title:"Sherlock Holmes", author:"Artur Konan Doyl", price:60000, img:"sher.jpg", artikul:"ELT014", stock:25, desc:"Dunyoning eng mashhur detektivi Sherlok Xolmsning sarguzashtlari. Har bir hikoya aql bovar qilmaydigan mantiq va kuzatuvga asoslangan. Sirlarni ochishni yaxshi ko‘radiganlar uchun ajoyib tanlov." },
+        { id:15, title:"Sapiens", author:"Yuval N. Xarari", price:78000, img:"sap.jpg", artikul:"ELT015", stock:18, desc:"Insoniyatning qisqacha tarixi – tosh asridan kiber asrgacha. Xarari inson evolyutsiyasining hayratlanarli bosqichlarini sodda va qiziqarli bayon qiladi. Dunyoqarashingizni kengaytiradigan kitob." }
+    ];
 
-        let cart = JSON.parse(localStorage.getItem('eb_cart')) || [];
-        let currentUser = JSON.parse(localStorage.getItem('eb_user'));
-        let orderHistory = JSON.parse(localStorage.getItem('eb_orders')) || [];
+    const langData = {
+        uz: { home:"Asosiy", profile:"Profil", title:"Elite Kutubxonasi", subtitle:"Eng sara kitoblar – tez yetkazib berish", search:"Qidirish... kitob nomi yoki muallif", orderHistory:"Buyurtmalarim", added:"Savatga qo'shildi", cart:"Savatcha", emptyCart:"Savat bo'sh", total:"Jami", confirm:"Buyurtma berish", inStock:"Sotuvda", addCart:"Savatga", buyNow:"Xarid qilish", artikul:"Artikul", stock:"Soni", desc:"Tavsif", noOrders:"Hali buyurtma yo'q" },
+        ru: { home:"Главная", profile:"Профиль", title:"Библиотека Elite", subtitle:"Лучшие книги – быстрая доставка", search:"Поиск... название или автор", orderHistory:"Мои заказы", added:"Добавлено в корзину", cart:"Корзина", emptyCart:"Корзина пуста", total:"Итого", confirm:"Оформить заказ", inStock:"В наличии", addCart:"В корзину", buyNow:"Купить", artikul:"Артикул", stock:"Кол-во", desc:"Описание", noOrders:"Заказов пока нет" }
+    };
+    let currentLang = localStorage.getItem('eb_lang') || 'uz';
+    let currentUser = JSON.parse(localStorage.getItem('eb_current_user'));
+    let cart = JSON.parse(localStorage.getItem('eb_cart')) || [];
 
-        window.onload = () => {
-            if(currentUser) {
-                document.getElementById('authWrapper').style.display = 'none';
-                updateProfile();
-            }
-            renderBooks(ALL_BOOKS);
-            updateCartCount();
-        };
+    function updateUILanguage() {
+        const t = langData[currentLang];
+        document.getElementById('globalTitle').innerText = t.title;
+        document.getElementById('globalSubtitle').innerText = t.subtitle;
+        document.getElementById('searchField').placeholder = t.search;
+        document.getElementById('navHomeText').innerText = t.home;
+        document.getElementById('navProfileText').innerText = t.profile;
+        document.getElementById('orderHistoryTitle').innerText = t.orderHistory;
+    }
 
-        function showPage(page) {
-            document.getElementById('homePage').classList.toggle('d-none', page !== 'home');
-            document.getElementById('profilePage').classList.toggle('d-none', page !== 'profile');
-            if(page === 'profile') renderOrders();
-        }
+    function changeLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('eb_lang', lang);
+        updateUILanguage();
+        renderBooks(BOOKS_DB);
+    }
 
-        function toggleAuth(type) {
-            document.getElementById('loginForm').classList.toggle('d-none', type === 'reg');
-            document.getElementById('regForm').classList.toggle('d-none', type === 'login');
-        }
-
-        function handleRegister() {
-            const user = {
-                ism: document.getElementById('rIsm').value,
-                fam: document.getElementById('rFam').value,
-                tel: document.getElementById('rTel').value,
-                manzil: document.getElementById('rManzil').value,
-                pass: document.getElementById('rPass').value
-            };
-            if(!user.ism || !user.tel || !user.pass) return Swal.fire('Xato', 'Ma\'lumotlarni to\'ldiring', 'error');
-            localStorage.setItem('eb_user', JSON.stringify(user));
-            currentUser = user;
-            location.reload();
-        }
-
-        function handleLogin() {
-            const tel = document.getElementById('loginTel').value;
-            const pass = document.getElementById('loginPass').value;
-            const savedUser = JSON.parse(localStorage.getItem('eb_user'));
-            if(savedUser && savedUser.tel === tel && savedUser.pass === pass) {
-                currentUser = savedUser;
-                document.getElementById('authWrapper').style.display = 'none';
-                updateProfile();
-                Swal.fire('Xush kelibsiz!', savedUser.ism, 'success');
-            } else {
-                Swal.fire('Xato', 'Telefon yoki parol noto\'g\'ri', 'error');
-            }
-        }
-
-        function renderBooks(data) {
-            const grid = document.getElementById('booksDisplay');
-            grid.innerHTML = data.map(b => `
-                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up">
-                    <div class="glass book-card h-100" onclick="showBookDetails(${b.id})">
-                        <img src="${b.img}" class="book-img mb-3" onerror="this.src='https://via.placeholder.com/300x450?text=Rasm+Yoq'">
-                        <h6 class="fw-bold mb-1 text-truncate">${b.title}</h6>
-                        <p class="small opacity-50 mb-2">${b.author}</p>
-                        <div class="d-flex justify-content-between align-items-center mt-auto">
-                            <span class="text-info fw-bold small">${b.price.toLocaleString()} UZS</span>
-                            <button class="btn btn-sm btn-info rounded-circle" onclick="event.stopPropagation(); addToCart(${b.id})"><i class="bi bi-plus-lg"></i></button>
-                        </div>
+    function renderBooks(booksArray) {
+        const container = document.getElementById('booksContainer');
+        const t = langData[currentLang];
+        if(!booksArray.length) { container.innerHTML = `<div class="col-12 text-center"><i class="bi bi-search fs-1"></i><p>${t.emptyCart || "Topilmadi"}</p></div>`; return; }
+        container.innerHTML = booksArray.map(book => `
+            <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up">
+                <div class="glass-card p-3 h-100" onclick="openBookModal(${book.id})">
+                    <img src="${book.img}" class="book-img mb-3" onerror="this.src='https://placehold.co/400x500/0a1428/ffffff?text=ELITE'">
+                    <h6 class="fw-bold text-truncate">${book.title}</h6>
+                    <p class="small text-info">${book.author}</p>
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <span class="price-badge">${book.price.toLocaleString()} so'm</span>
+                        <button class="btn btn-sm btn-outline-info rounded-pill" onclick="event.stopPropagation(); addToCart(${book.id})"><i class="bi bi-cart-plus"></i></button>
                     </div>
+                    <div class="small mt-2 ${book.stock > 20 ? 'stock-green' : 'stock-orange'}"><i class="bi bi-check-circle-fill"></i> ${t.inStock} ${book.stock}</div>
                 </div>
-            `).join('');
-        }
+            </div>
+        `).join('');
+    }
 
-        function showBookDetails(id) {
-            const b = ALL_BOOKS.find(x => x.id === id);
-            document.getElementById('modalData').innerHTML = `
-                <div class="modal-body p-4 text-center">
-                    <img src="${b.img}" style="width: 180px; border-radius: 15px; margin-bottom: 20px;" onerror="this.src='https://via.placeholder.com/300x450'">
-                    <h3 class="fw-800 text-info">${b.title}</h3>
-                    <p class="text-secondary">${b.author}</p>
-                    <p class="small opacity-75">${b.desc}</p>
-                    <div class="d-flex justify-content-around mt-4">
-                        <h4 class="mb-0 text-white">${b.price.toLocaleString()} UZS</h4>
-                        <button class="btn btn-info px-4 fw-bold rounded-pill" onclick="addToCart(${b.id})">SAVATGA QO'SHISH</button>
-                    </div>
-                </div>
-            `;
-            new bootstrap.Modal(document.getElementById('bookModal')).show();
-        }
+    function filterBooks() {
+        let query = document.getElementById('searchField').value.toLowerCase();
+        let filtered = BOOKS_DB.filter(b => b.title.toLowerCase().includes(query) || b.author.toLowerCase().includes(query));
+        renderBooks(filtered);
+    }
 
-        function addToCart(id) {
-            const book = ALL_BOOKS.find(x => x.id === id);
-            cart.push({...book, cartId: Date.now()});
-            localStorage.setItem('eb_cart', JSON.stringify(cart));
-            updateCartCount();
-            Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: 'Savatga qo\'shildi', showConfirmButton: false, timer: 1000 });
-        }
+    function addToCart(bookId) {
+        let book = BOOKS_DB.find(b => b.id === bookId);
+        cart.push({ ...book, cartTime: Date.now() });
+        localStorage.setItem('eb_cart', JSON.stringify(cart));
+        updateCartBadge();
+        Swal.fire({ toast:true, position:'top-end', icon:'success', title:langData[currentLang].added, showConfirmButton:false, timer:1200, background:'#0a1220', color:'#fff' });
+    }
 
-        function updateCartCount() {
-            document.getElementById('cartCount').innerText = cart.length;
-        }
+    function updateCartBadge() { document.getElementById('cartGlobalCount').innerText = cart.length; }
 
-        function openCart() {
-            if(!cart.length) return Swal.fire('Savat bo\'sh', '', 'info');
-            let total = cart.reduce((s, i) => s + i.price, 0);
-
-            Swal.fire({
-                title: 'Savatcha',
-                html: `
-                    <div class="text-start" style="max-height: 300px; overflow-y: auto;">
-                        ${cart.map(i => `<div class="d-flex justify-content-between py-2 border-bottom border-secondary small"><span>${i.title}</span><b>${i.price.toLocaleString()} UZS</b></div>`).join('')}
-                    </div>
-                    <h5 class="mt-3 text-info">Jami: ${total.toLocaleString()} UZS</h5>
-                `,
-                showCancelButton: true,
-                confirmButtonText: 'TASDIQLASH',
-                confirmButtonColor: '#00d2ff',
-                background: '#111', color: '#fff'
-            }).then(r => {
-                if(r.isConfirmed) {
-                    const order = { date: new Date().toLocaleString(), count: cart.length, total: total };
-                    orderHistory.unshift(order);
-                    localStorage.setItem('eb_orders', JSON.stringify(orderHistory));
-                    cart = [];
-                    localStorage.setItem('eb_cart', '[]');
-                    updateCartCount();
-                    Swal.fire('Rahmat!', 'Buyurtmangiz qabul qilindi.', 'success');
+    // ==================== BUYURTMA BERISH ====================
+    function openCart() {
+        const t = langData[currentLang];
+        if(cart.length === 0) { Swal.fire(t.cart, t.emptyCart, 'info'); return; }
+        let totalPrice = cart.reduce((s,i)=> s + i.price,0);
+        let itemsHtml = cart.map((item, idx) => `
+            <div class="d-flex justify-content-between align-items-center border-bottom border-secondary py-2">
+                <div><b>${item.title}</b><br><small>${item.author}</small></div>
+                <div class="text-end">${item.price.toLocaleString()} so'm<br><button class="btn btn-sm btn-danger mt-1" onclick="removeCartItem(${idx})"><i class="bi bi-trash"></i></button></div>
+            </div>
+        `).join('');
+        Swal.fire({
+            title: `<i class="bi bi-cart3 text-info"></i> ${t.cart}`,
+            html: `<div style="max-height:280px; overflow:auto;">${itemsHtml}</div><hr><div class="d-flex justify-content-between fw-bold"><span>${t.total}:</span><span class="text-info">${totalPrice.toLocaleString()} so'm</span></div>`,
+            showCancelButton: true,
+            confirmButtonText: t.confirm,
+            cancelButtonText: "Yopish",
+            background: '#0f1a2b',
+            color:'white'
+        }).then(res => {
+            if(res.isConfirmed) {
+                let newOrder = { 
+                    date: new Date().toLocaleString(), 
+                    items: [...cart], 
+                    total: totalPrice, 
+                    count: cart.length 
+                };
+                let existingOrders = JSON.parse(localStorage.getItem('eb_orders')) || [];
+                existingOrders.unshift(newOrder);
+                localStorage.setItem('eb_orders', JSON.stringify(existingOrders));
+                cart = [];
+                localStorage.setItem('eb_cart', JSON.stringify(cart));
+                updateCartBadge();
+                Swal.fire("✅ Buyurtma qabul qilindi!", "", "success");
+                // Agar profil sahifasi ochiq bo'lsa, darhol yangilash
+                const profilePageDiv = document.getElementById('profilePage');
+                if (profilePageDiv && profilePageDiv.style.display !== 'none') {
+                    renderOrderHistory();
                 }
-            });
-        }
+            }
+        });
+    }
 
-        function updateProfile() {
-            if(!currentUser) return;
-            document.getElementById('userCard').innerHTML = `
-                <div class="py-2">
-                    <p class="mb-1 text-info small">F.I.SH:</p>
-                    <h5 class="fw-bold">${currentUser.ism} ${currentUser.fam}</h5>
-                    <p class="mb-1 text-info small mt-3">Telefon:</p>
-                    <h5 class="fw-bold">${currentUser.tel}</h5>
-                    <p class="mb-1 text-info small mt-3">Manzil:</p>
-                    <p>${currentUser.manzil}</p>
+    function removeCartItem(index) {
+        cart.splice(index,1);
+        localStorage.setItem('eb_cart', JSON.stringify(cart));
+        updateCartBadge();
+        Swal.close();
+        openCart();
+    }
+
+    function openBookModal(bookId) {
+        let b = BOOKS_DB.find(x=>x.id === bookId);
+        const t = langData[currentLang];
+        let modalHtml = `
+            <div class="modal-header border-0"><h5 class="modal-title">${b.title}</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body p-4">
+                <div class="row">
+                    <div class="col-md-5"><img src="${b.img}" class="img-fluid rounded-4" onerror="this.src='https://placehold.co/400x500/0a1428/white?text=NOIMG'"></div>
+                    <div class="col-md-7">
+                        <h3>${b.title}</h3><p class="text-info">${b.author}</p>
+                        <div class="glass p-2 mb-3"><div>${t.artikul}: ${b.artikul}</div><div>${t.stock}: <span class="${b.stock>20?'stock-green':'stock-orange'}">${b.stock} ta</span></div></div>
+                        <p>${b.desc}</p>
+                        <div class="fs-3 fw-bold text-info mb-3">${b.price.toLocaleString()} so'm</div>
+                        <div class="d-flex gap-2"><button class="btn-glow px-4 py-2" onclick="addToCart(${b.id}); bootstrap.Modal.getInstance(document.getElementById('bookDetailModal')).hide();"><i class="bi bi-cart-plus"></i> ${t.addCart}</button>
+                        <button class="btn btn-outline-info" onclick="buyNowAction(${b.id})">${t.buyNow}</button></div>
+                    </div>
                 </div>
-            `;
-        }
+            </div>
+        `;
+        document.getElementById('bookModalBody').innerHTML = modalHtml;
+        new bootstrap.Modal(document.getElementById('bookDetailModal')).show();
+    }
 
-        function renderOrders() {
-            const h = document.getElementById('orderHistory');
-            if(!orderHistory.length) { h.innerHTML = '<p class="opacity-50 text-center py-5">Buyurtmalar yo\'q.</p>'; return; }
-            h.innerHTML = orderHistory.map(o => `
-                <div class="p-3 mb-2 glass border-0 d-flex justify-content-between align-items-center">
-                    <div><small class="opacity-50">${o.date}</small><br><b>${o.count} ta mahsulot</b></div>
-                    <div class="fw-bold text-info">${o.total.toLocaleString()} UZS</div>
+    function buyNowAction(bookId) {
+        addToCart(bookId);
+        setTimeout(() => openCart(), 300);
+    }
+
+    // ==================== BUYURTMALAR TARIXINI KO'RSATISH (TO'G'RILANGAN) ====================
+    function renderOrderHistory() {
+        const container = document.getElementById('ordersList');
+        if (!container) {
+            console.log("ordersList elementi topilmadi");
+            return;
+        }
+        const t = langData[currentLang];
+        let history = JSON.parse(localStorage.getItem('eb_orders')) || [];
+        
+        console.log("Buyurtmalar soni:", history.length);
+        
+        if (!history.length) { 
+            container.innerHTML = `<div class="text-center py-5 opacity-75"><i class="bi bi-inbox fs-1"></i><p>${t.noOrders}</p></div>`; 
+            return; 
+        }
+        
+        container.innerHTML = history.map(order => `
+            <div class="glass p-3 mb-3 rounded-3" style="border: 1px solid rgba(0,210,255,0.1)">
+                <div class="d-flex justify-content-between small opacity-75">
+                    <span><i class="bi bi-calendar"></i> ${order.date}</span>
+                    <span class="badge bg-info">${order.count} ta kitob</span>
                 </div>
-            `).join('');
-        }
+                <div class="small mt-2">
+                    ${order.items.slice(0, 3).map(i => `• ${i.title}`).join('<br>')}
+                    ${order.items.length > 3 ? `<span class="opacity-50">... va ${order.items.length - 3} ta kitob</span>` : ''}
+                </div>
+                <div class="d-flex justify-content-between mt-2 border-top border-secondary pt-2">
+                    <b class="small">${t.total}:</b>
+                    <b class="text-info">${order.total.toLocaleString()} so'm</b>
+                </div>
+            </div>
+        `).join('');
+    }
 
-        function searchBooks() {
-            const q = document.getElementById('search').value.toLowerCase();
-            renderBooks(ALL_BOOKS.filter(b => b.title.toLowerCase().includes(q) || b.author.toLowerCase().includes(q)));
-        }
+    // ==================== PROFIL MA'LUMOTLARINI YANGILASH ====================
+    function updateProfileUI() {
+        if(!currentUser) return;
+        document.getElementById('userFullName').innerHTML = `${currentUser.name} ${currentUser.surname}`;
+        document.getElementById('userPhoneDisplay').innerHTML = currentUser.phone;
+        document.getElementById('userAddressDisplay').innerHTML = currentUser.address || "Manzil kiritilmagan";
+        // BUYURTMALAR TARIXINI YANGILASH
+        renderOrderHistory();
+    }
 
-        function logout() {
-            localStorage.removeItem('eb_user');
-            location.reload();
+    // ==================== PROFIL SAHIFASINI OCHISH ====================
+    function showProfile() {
+        document.getElementById('homePage').style.display = 'none';
+        document.getElementById('profilePage').style.display = 'block';
+        // Foydalanuvchi ma'lumotlarini qayta yuklash
+        currentUser = JSON.parse(localStorage.getItem('eb_current_user'));
+        updateProfileUI(); // Bu renderOrderHistory() ni chaqiradi
+    }
+
+    function showHome() {
+        document.getElementById('homePage').style.display = 'block';
+        document.getElementById('profilePage').style.display = 'none';
+        renderBooks(BOOKS_DB);
+        document.getElementById('searchField').value = '';
+    }
+
+    // ==================== AUTH ====================
+    function registerUser() {
+        let name = document.getElementById('regName').value.trim();
+        let surname = document.getElementById('regSurname').value.trim();
+        let phone = document.getElementById('regPhone').value.trim();
+        let address = document.getElementById('regAddress').value.trim();
+        let pass = document.getElementById('regPassword').value;
+        if(!name || !surname || !phone || !pass || pass.length<4) { Swal.fire("Xato","Barcha maydonlarni to'ldiring va parol 4+ belgi",'error'); return; }
+        let newUser = { name, surname, phone, address, password:pass };
+        localStorage.setItem('eb_current_user', JSON.stringify(newUser));
+        localStorage.setItem('eb_users_backup', JSON.stringify(newUser));
+        currentUser = newUser;
+        document.getElementById('authOverlay').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
+        updateCartBadge();
+        updateUILanguage();
+        renderBooks(BOOKS_DB);
+        showHome();
+    }
+    function loginUser() {
+        let phone = document.getElementById('loginPhone').value.trim();
+        let pass = document.getElementById('loginPassword').value;
+        let stored = JSON.parse(localStorage.getItem('eb_current_user')) || JSON.parse(localStorage.getItem('eb_users_backup'));
+        if(stored && stored.phone === phone && stored.password === pass) {
+            currentUser = stored;
+            localStorage.setItem('eb_current_user', JSON.stringify(currentUser));
+            document.getElementById('authOverlay').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'block';
+            updateCartBadge();
+            updateUILanguage();
+            renderBooks(BOOKS_DB);
+            showHome();
+        } else { Swal.fire("Xato","Telefon yoki parol noto‘g‘ri",'error'); }
+    }
+    function logoutUser() {
+        localStorage.removeItem('eb_current_user');
+        location.reload();
+    }
+    function toggleAuthPanel(type) {
+        document.getElementById('loginPanel').style.display = type === 'login' ? 'block' : 'none';
+        document.getElementById('regPanel').style.display = type === 'reg' ? 'block' : 'none';
+    }
+
+    window.onload = () => {
+        let user = JSON.parse(localStorage.getItem('eb_current_user'));
+        if(user) {
+            currentUser = user;
+            document.getElementById('authOverlay').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'block';
+            updateUILanguage();
+            renderBooks(BOOKS_DB);
+            updateCartBadge();
+            showHome();
+        } else {
+            document.getElementById('authOverlay').style.display = 'flex';
         }
-    </script>
+    };
+</script>
 </body>
 </html>
