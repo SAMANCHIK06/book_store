@@ -111,7 +111,6 @@
 </head>
 <body>
 
-<!-- LOGIN / REGISTER OVERLAY -->
 <div id="authOverlay" style="position:fixed; inset:0; background:rgba(0,0,0,0.95); backdrop-filter:blur(20px); z-index:1050; display:flex; align-items:center; justify-content:center;">
     <div class="glass p-4 p-md-5" style="width:92%; max-width:480px;">
         <div id="loginPanel">
@@ -134,7 +133,7 @@
     </div>
 </div>
 
-<!-- MAIN APP -->
+
 <div id="mainApp" style="display:none;">
 
 <nav class="navbar navbar-expand-lg navbar-custom sticky-top px-3">
@@ -216,7 +215,7 @@
 <script>
     AOS.init({ duration: 700, once: true });
 
-    // ========== 15 TA KITOB ==========
+    //15 TA KITOB 
     const BOOKS_DB = [
         { id:1, title:"Xolid ibn Valid", author:"Iskandar Ahmad", price:55000, img:"xolid.jpg", artikul:"ELT001", stock:28, desc:"Xolid ibn Valid – islom tarixidagi buyuk sarkardalardan biri. U hech qachon jangda mag‘lub bo‘lmagan noyob qo‘mondon. Ushbu kitobda uning jasorati, strategiyasi va diniy sadoqati hikoya qilinadi." },
         { id:2, title:"Xatolar saboqlari", author:"Nil Donald Uolsh", price:42000, img:"xato.jpeg", artikul:"ELT002", stock:35, desc:"Xatolar insonning eng yaxshi ustozidir. Kitobda hayotiy muvaffaqiyatsizliklardan qanday saboq chiqarish ko‘rsatilgan. Har bir xato sizni kuchliroq qilishiga ishonch hosil qilasiz." },
@@ -296,7 +295,7 @@
 
     function updateCartBadge() { document.getElementById('cartGlobalCount').innerText = cart.length; }
 
-    // ==================== BUYURTMA BERISH ====================
+    
     function openCart() {
         const t = langData[currentLang];
         if(cart.length === 0) { Swal.fire(t.cart, t.emptyCart, 'info'); return; }
@@ -375,7 +374,7 @@
         setTimeout(() => openCart(), 300);
     }
 
-    // ==================== BUYURTMALAR TARIXINI KO'RSATISH (TO'G'RILANGAN) ====================
+ 
     function renderOrderHistory() {
         const container = document.getElementById('ordersList');
         if (!container) {
@@ -410,7 +409,7 @@
         `).join('');
     }
 
-    // ==================== PROFIL MA'LUMOTLARINI YANGILASH ====================
+
     function updateProfileUI() {
         if(!currentUser) return;
         document.getElementById('userFullName').innerHTML = `${currentUser.name} ${currentUser.surname}`;
@@ -420,7 +419,6 @@
         renderOrderHistory();
     }
 
-    // ==================== PROFIL SAHIFASINI OCHISH ====================
     function showProfile() {
         document.getElementById('homePage').style.display = 'none';
         document.getElementById('profilePage').style.display = 'block';
@@ -436,7 +434,6 @@
         document.getElementById('searchField').value = '';
     }
 
-    // ==================== AUTH ====================
     function registerUser() {
         let name = document.getElementById('regName').value.trim();
         let surname = document.getElementById('regSurname').value.trim();
