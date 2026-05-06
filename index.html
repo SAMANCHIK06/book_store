@@ -154,7 +154,6 @@
     </div>
 </nav>
 
-<!-- HOME PAGE -->
 <div id="homePage">
     <div class="container py-4">
         <div class="text-center my-4" data-aos="fade-down">
@@ -168,7 +167,7 @@
     </div>
 </div>
 
-<!-- PROFILE PAGE -->
+
 <div id="profilePage" style="display:none;">
     <div class="container py-5">
         <div class="row g-4">
@@ -192,7 +191,7 @@
     </div>
 </div>
 
-<!-- BOOK MODAL -->
+
 <div class="modal fade modal-dark" id="bookDetailModal" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content" id="bookModalBody"></div>
@@ -329,7 +328,7 @@
                 localStorage.setItem('eb_cart', JSON.stringify(cart));
                 updateCartBadge();
                 Swal.fire("✅ Buyurtma qabul qilindi!", "", "success");
-                // Agar profil sahifasi ochiq bo'lsa, darhol yangilash
+
                 const profilePageDiv = document.getElementById('profilePage');
                 if (profilePageDiv && profilePageDiv.style.display !== 'none') {
                     renderOrderHistory();
@@ -415,14 +414,14 @@
         document.getElementById('userFullName').innerHTML = `${currentUser.name} ${currentUser.surname}`;
         document.getElementById('userPhoneDisplay').innerHTML = currentUser.phone;
         document.getElementById('userAddressDisplay').innerHTML = currentUser.address || "Manzil kiritilmagan";
-        // BUYURTMALAR TARIXINI YANGILASH
+        
         renderOrderHistory();
     }
 
     function showProfile() {
         document.getElementById('homePage').style.display = 'none';
         document.getElementById('profilePage').style.display = 'block';
-        // Foydalanuvchi ma'lumotlarini qayta yuklash
+    
         currentUser = JSON.parse(localStorage.getItem('eb_current_user'));
         updateProfileUI(); // Bu renderOrderHistory() ni chaqiradi
     }
