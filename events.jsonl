@@ -1,0 +1,27 @@
+{"ts": "2026-11-25T04:42:35+00:00", "stage": "init", "status": "created", "message": "Loyiha yaratildi"}
+{"ts": "2026-11-25T04:42:35+00:00", "stage": "plan", "status": "running", "message": "Reja agenti ishga tushdi"}
+{"ts": "2026-11-25T04:42:49+00:00", "stage": "plan", "status": "done", "message": "Reja agenti: hujjat tayyor (01-plan.md)"}
+{"ts": "2026-11-25T04:42:50+00:00", "stage": "plan", "status": "awaiting_approval", "message": "Reja agenti tayyor. Keyingi bosqich uchun tasdiqlang."}
+{"ts": "2026-11-25T04:42:51+00:00", "stage": "plan", "status": "approved", "message": "Foydalanuvchi tasdiqladi"}
+{"ts": "2026-11-25T04:42:51+00:00", "stage": "architecture", "status": "running", "message": "Arxitektura agenti ishga tushdi"}
+{"ts": "2026-11-25T04:43:29+00:00", "stage": "architecture", "status": "done", "message": "Arxitektura agenti: hujjat tayyor (02-architecture.md)"}
+{"ts": "2026-11-25T04:43:30+00:00", "stage": "architecture", "status": "awaiting_approval", "message": "Arxitektura agenti tayyor. Keyingi bosqich uchun tasdiqlang."}
+{"ts": "2026-11-25T04:43:31+00:00", "stage": "architecture", "status": "approved", "message": "Foydalanuvchi tasdiqladi"}
+{"ts": "2026-11-25T04:43:31+00:00", "stage": "build", "status": "running", "message": "Build agenti ishga tushdi"}
+{"ts": "2026-11-25T04:44:20+00:00", "stage": "build", "status": "done", "message": "Build agenti: hujjat tayyor (03-build-tasks.md)"}
+{"ts": "2026-11-25T04:44:21+00:00", "stage": "build", "status": "awaiting_approval", "message": "Build agenti tayyor. Keyingi bosqich uchun tasdiqlang."}
+{"ts": "2026-11-25T04:44:22+00:00", "stage": "build", "status": "approved", "message": "Foydalanuvchi tasdiqladi"}
+{"ts": "2026-11-25T04:44:22+00:00", "stage": "review", "status": "running", "message": "Review agenti ishga tushdi"}
+{"ts": "2026-11-25T04:44:57+00:00", "stage": "review", "status": "done", "message": "Review agenti: hujjat tayyor (04-review.md)"}
+{"ts": "2026-11-25T04:44:58+00:00", "stage": "review", "status": "awaiting_approval", "message": "Review agenti tayyor. Keyingi bosqich uchun tasdiqlang."}
+{"ts": "2026-11-25T04:44:59+00:00", "stage": "review", "status": "approved", "message": "Foydalanuvchi tasdiqladi"}
+{"ts": "2026-11-25T04:44:59+00:00", "stage": "code", "status": "running", "message": "Kod agenti ishga tushdi"}
+{"ts": "2026-11-25T04:46:00+00:00", "stage": "code", "status": "failed", "message": "Xato: AI API bilan bog'lanish xatosi: The read operation timed out"}
+{"ts": "2026-11-25T04:46:45+00:00", "stage": "code", "status": "running", "message": "Kod agenti ishga tushdi"}
+{"ts": "2026-11-25T04:48:23+00:00", "stage": "code", "status": "failed", "message": "Xato: Kod agenti JSON formatida javob bermadi"}
+{"ts": "2026-11-25T04:52:30+00:00", "stage": "code", "status": "running", "message": "Kod agenti ishga tushdi"}
+{"ts": "2026-11-25T04:52:59+00:00", "stage": "code", "status": "failed", "message": "Xato: Kod agenti JSON formatida javob bermadi"}
+{"ts": "2026-11-25T04:54:34+00:00", "stage": "code", "status": "running", "message": "Kod agenti ishga tushdi"}
+{"ts": "2026-11-25T04:55:07+00:00", "stage": "code", "status": "done", "message": "Kod agenti: hujjat tayyor (05-code-summary.md)"}
+{"ts": "2026-11-25T04:55:08+00:00", "stage": "code", "status": "awaiting_approval", "message": "Barcha bosqichlar tugallandi. Natijani tasdiqlang."}
+{"ts": "2026-11-25T04:55:09+00:00", "stage": "code", "status": "approved", "message": "Foydalanuvchi tasdiqladi"}

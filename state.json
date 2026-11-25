@@ -1,0 +1,74 @@
+{
+  "id": "394a5ebd379d",
+  "owner_id": 8857831264,
+  "brief": {
+    "name": "Gemini yakuniy loyihasi",
+    "description": "Haqiqiy AI bilan toliq sinov",
+    "audience": "",
+    "features": "Mini App, tasdiq, hujjatlar",
+    "technologies": "Python",
+    "constraints": ""
+  },
+  "stages": {
+    "plan": {
+      "status": "done",
+      "approved": true,
+      "artifact": "01-plan.md",
+      "error": "",
+      "model": "gemini-2.5-flash",
+      "tokens_in": 427,
+      "tokens_out": 1257,
+      "started_at": "",
+      "finished_at": "2026-11-25T04:42:49+00:00"
+    },
+    "architecture": {
+      "status": "done",
+      "approved": true,
+      "artifact": "02-architecture.md",
+      "error": "",
+      "model": "gemini-2.5-flash",
+      "tokens_in": 1686,
+      "tokens_out": 4094,
+      "started_at": "",
+      "finished_at": "2026-11-25T04:43:29+00:00"
+    },
+    "build": {
+      "status": "done",
+      "approved": true,
+      "artifact": "03-build-tasks.md",
+      "error": "",
+      "model": "gemini-2.5-flash",
+      "tokens_in": 5791,
+      "tokens_out": 5467,
+      "started_at": "",
+      "finished_at": "2026-11-25T04:44:20+00:00"
+    },
+    "review": {
+      "status": "done",
+      "approved": true,
+      "artifact": "04-review.md",
+      "error": "",
+      "model": "gemini-2.5-flash",
+      "tokens_in": 10616,
+      "tokens_out": 3112,
+      "started_at": "",
+      "finished_at": "2026-11-25T04:44:57+00:00"
+    },
+    "code": {
+      "status": "done",
+      "approved": true,
+      "artifact": "05-code-summary.md",
+      "error": "",
+      "model": "gemini-2.5-flash",
+      "tokens_in": 8294,
+      "tokens_out": 3257,
+      "started_at": "",
+      "finished_at": "2026-11-25T04:55:07+00:00"
+    }
+  },
+  "status": "completed",
+  "awaiting_approval": "",
+  "created_at": "2026-11-25T04:42:35+00:00",
+  "updated_at": "2026-11-25T04:55:09+00:00",
+  "version": 1
+}
