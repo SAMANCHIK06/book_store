@@ -1,0 +1,8 @@
+{
+  "name": "dokon",
+  "description": "sayt",
+  "audience": "mijozlar",
+  "features": "sms yuborish",
+  "technologies": "python",
+  "constraints": "byudjet yoq"
+}
