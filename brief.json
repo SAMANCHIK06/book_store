@@ -1,0 +1,8 @@
+{
+  "name": "guldokoni",
+  "description": "guldokoni uchun oddiy zakaz qabul qilish sayti",
+  "audience": "kichik guldokoni egalariga",
+  "features": "buyurtma formasi",
+  "technologies": "python",
+  "constraints": "byudjet mavjud emas"
+}

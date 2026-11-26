@@ -1,0 +1,74 @@
+{
+  "id": "c845c329d201",
+  "owner_id": 8857831264,
+  "brief": {
+    "name": "guldokoni",
+    "description": "guldokoni uchun oddiy zakaz qabul qilish sayti",
+    "audience": "kichik guldokoni egalariga",
+    "features": "buyurtma formasi",
+    "technologies": "python",
+    "constraints": "byudjet mavjud emas"
+  },
+  "stages": {
+    "plan": {
+      "status": "done",
+      "approved": true,
+      "artifact": "01-plan.md",
+      "error": "",
+      "model": "gemini-2.5-flash",
+      "tokens_in": 427,
+      "tokens_out": 1155,
+      "started_at": "",
+      "finished_at": "2026-11-25T06:07:17+00:00"
+    },
+    "architecture": {
+      "status": "done",
+      "approved": true,
+      "artifact": "02-architecture.md",
+      "error": "",
+      "model": "gemini-2.5-flash",
+      "tokens_in": 1584,
+      "tokens_out": 2720,
+      "started_at": "",
+      "finished_at": "2026-11-25T06:08:58+00:00"
+    },
+    "build": {
+      "status": "done",
+      "approved": true,
+      "artifact": "03-build-tasks.md",
+      "error": "",
+      "model": "gemini-2.5-flash",
+      "tokens_in": 4315,
+      "tokens_out": 3446,
+      "started_at": "",
+      "finished_at": "2026-11-26T02:49:09+00:00"
+    },
+    "review": {
+      "status": "done",
+      "approved": true,
+      "artifact": "04-review.md",
+      "error": "",
+      "model": "gemini-2.5-flash",
+      "tokens_in": 7783,
+      "tokens_out": 2734,
+      "started_at": "",
+      "finished_at": "2026-11-26T02:49:46+00:00"
+    },
+    "code": {
+      "status": "done",
+      "approved": true,
+      "artifact": "05-code-summary.md",
+      "error": "",
+      "model": "gemini-2.5-flash",
+      "tokens_in": 6559,
+      "tokens_out": 6750,
+      "started_at": "",
+      "finished_at": "2026-11-26T02:50:44+00:00"
+    }
+  },
+  "status": "completed",
+  "awaiting_approval": "",
+  "created_at": "2026-11-25T06:06:54+00:00",
+  "updated_at": "2026-11-26T02:50:45+00:00",
+  "version": 1
+}
